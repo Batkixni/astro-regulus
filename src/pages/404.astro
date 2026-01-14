@@ -1,0 +1,464 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { ThemeToggle } from "@/components/ThemeToggle";
+---
+
+<Layout
+    title="404 - Page Not Found"
+    description="The page you're looking for doesn't exist."
+>
+    <main
+        class="min-h-screen flex items-center justify-center relative overflow-hidden px-4"
+    >
+        <!-- Theme Toggle -->
+        <div class="absolute right-6 top-6 z-50">
+            <ThemeToggle client:load />
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+            class="relative z-10 text-center space-y-8 max-w-2xl animate-blur-in"
+        >
+            <!-- 404 Number with Glitch Effect -->
+            <div class="relative">
+                <h1
+                    class="text-[12rem] md:text-[16rem] font-black leading-none tracking-tighter glitch-text"
+                    data-text="404"
+                >
+                    404
+                </h1>
+                <div
+                    class="absolute inset-0 flex items-center justify-center opacity-20"
+                >
+                    <div
+                        class="text-[12rem] md:text-[16rem] font-black leading-none tracking-tighter text-primary blur-2xl"
+                    >
+                        404
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message -->
+            <div class="space-y-4 animate-blur-in delay-200">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+                    Page Not Found
+                </h2>
+                <p
+                    class="text-lg md:text-xl text-muted-foreground max-w-md mx-auto leading-relaxed"
+                >
+                    Oops! The page you're looking for seems to have wandered off
+                    into the void.
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 animate-blur-in delay-400"
+            >
+                <a
+                    href="/"
+                    class="group relative px-8 py-4 bg-primary text-primary-foreground font-bold uppercase tracking-wider rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50"
+                >
+                    <span class="relative z-10">Back to Home</span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
+                    >
+                    </div>
+                </a>
+
+                <button
+                    onclick="history.back()"
+                    class="group px-8 py-4 border-2 border-border hover:border-primary font-bold uppercase tracking-wider rounded-lg transition-all duration-300 hover:bg-muted"
+                >
+                    Go Back
+                </button>
+            </div>
+
+            <!-- Fun Stats -->
+            <div
+                class="pt-12 grid grid-cols-3 gap-6 max-w-lg mx-auto animate-blur-in delay-600"
+            >
+                <div class="space-y-1">
+                    <div
+                        class="text-3xl font-black text-primary counter"
+                        data-target="404"
+                    >
+                        0
+                    </div>
+                    <div
+                        class="text-xs uppercase tracking-wider text-muted-foreground"
+                    >
+                        Error Code
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <div
+                        class="text-3xl font-black text-primary counter"
+                        data-target="0"
+                    >
+                        0
+                    </div>
+                    <div
+                        class="text-xs uppercase tracking-wider text-muted-foreground"
+                    >
+                        Pages Found
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <div
+                        class="text-3xl font-black text-primary counter"
+                        data-target="100"
+                    >
+                        0
+                    </div>
+                    <div
+                        class="text-xs uppercase tracking-wider text-muted-foreground"
+                    >
+                        % Lost
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    /* Floating Orbs Animation */
+    .floating-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+        animation: float 20s ease-in-out infinite;
+    }
+
+    .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(
+            135deg,
+            hsl(var(--primary)) 0%,
+            hsl(var(--primary) / 0.5) 100%
+        );
+        top: -10%;
+        left: -10%;
+        animation-delay: 0s;
+    }
+
+    .orb-2 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(
+            135deg,
+            hsl(var(--primary)) 0%,
+            hsl(var(--primary) / 0.3) 100%
+        );
+        bottom: -5%;
+        right: -5%;
+        animation-delay: -7s;
+    }
+
+    .orb-3 {
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(
+            135deg,
+            hsl(var(--primary) / 0.6) 0%,
+            hsl(var(--primary) / 0.2) 100%
+        );
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: -14s;
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translate(0, 0) scale(1);
+        }
+        33% {
+            transform: translate(30px, -50px) scale(1.1);
+        }
+        66% {
+            transform: translate(-20px, 20px) scale(0.9);
+        }
+    }
+
+    /* Glitch Text Effect */
+    .glitch-text {
+        position: relative;
+        color: hsl(var(--foreground));
+        animation: glitch-skew 1s ease-in-out infinite alternate;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch-text::before {
+        left: 2px;
+        text-shadow: -2px 0 hsl(var(--primary));
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch-text::after {
+        left: -2px;
+        text-shadow: -2px 0 hsl(var(--primary) / 0.8);
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% {
+            clip: rect(10px, 9999px, 31px, 0);
+            transform: skew(0.3deg);
+        }
+        5% {
+            clip: rect(70px, 9999px, 71px, 0);
+            transform: skew(0.5deg);
+        }
+        10% {
+            clip: rect(60px, 9999px, 100px, 0);
+            transform: skew(0.2deg);
+        }
+        15% {
+            clip: rect(10px, 9999px, 105px, 0);
+            transform: skew(0.4deg);
+        }
+        20% {
+            clip: rect(40px, 9999px, 20px, 0);
+            transform: skew(0.1deg);
+        }
+        25% {
+            clip: rect(65px, 9999px, 45px, 0);
+            transform: skew(0.3deg);
+        }
+        30% {
+            clip: rect(95px, 9999px, 15px, 0);
+            transform: skew(0.2deg);
+        }
+        35% {
+            clip: rect(30px, 9999px, 80px, 0);
+            transform: skew(0.5deg);
+        }
+        40% {
+            clip: rect(85px, 9999px, 90px, 0);
+            transform: skew(0.1deg);
+        }
+        45% {
+            clip: rect(20px, 9999px, 50px, 0);
+            transform: skew(0.4deg);
+        }
+        50% {
+            clip: rect(75px, 9999px, 25px, 0);
+            transform: skew(0.2deg);
+        }
+        55% {
+            clip: rect(55px, 9999px, 95px, 0);
+            transform: skew(0.3deg);
+        }
+        60% {
+            clip: rect(5px, 9999px, 35px, 0);
+            transform: skew(0.5deg);
+        }
+        65% {
+            clip: rect(90px, 9999px, 60px, 0);
+            transform: skew(0.1deg);
+        }
+        70% {
+            clip: rect(45px, 9999px, 75px, 0);
+            transform: skew(0.4deg);
+        }
+        75% {
+            clip: rect(25px, 9999px, 85px, 0);
+            transform: skew(0.2deg);
+        }
+        80% {
+            clip: rect(80px, 9999px, 40px, 0);
+            transform: skew(0.3deg);
+        }
+        85% {
+            clip: rect(15px, 9999px, 65px, 0);
+            transform: skew(0.5deg);
+        }
+        90% {
+            clip: rect(70px, 9999px, 10px, 0);
+            transform: skew(0.1deg);
+        }
+        95% {
+            clip: rect(35px, 9999px, 55px, 0);
+            transform: skew(0.4deg);
+        }
+        100% {
+            clip: rect(50px, 9999px, 30px, 0);
+            transform: skew(0.2deg);
+        }
+    }
+
+    @keyframes glitch-anim2 {
+        0% {
+            clip: rect(65px, 9999px, 100px, 0);
+            transform: skew(0.5deg);
+        }
+        5% {
+            clip: rect(30px, 9999px, 35px, 0);
+            transform: skew(0.2deg);
+        }
+        10% {
+            clip: rect(90px, 9999px, 15px, 0);
+            transform: skew(0.4deg);
+        }
+        15% {
+            clip: rect(20px, 9999px, 80px, 0);
+            transform: skew(0.1deg);
+        }
+        20% {
+            clip: rect(75px, 9999px, 50px, 0);
+            transform: skew(0.3deg);
+        }
+        25% {
+            clip: rect(10px, 9999px, 95px, 0);
+            transform: skew(0.5deg);
+        }
+        30% {
+            clip: rect(55px, 9999px, 25px, 0);
+            transform: skew(0.2deg);
+        }
+        35% {
+            clip: rect(85px, 9999px, 60px, 0);
+            transform: skew(0.4deg);
+        }
+        40% {
+            clip: rect(5px, 9999px, 70px, 0);
+            transform: skew(0.1deg);
+        }
+        45% {
+            clip: rect(45px, 9999px, 40px, 0);
+            transform: skew(0.3deg);
+        }
+        50% {
+            clip: rect(95px, 9999px, 10px, 0);
+            transform: skew(0.5deg);
+        }
+        55% {
+            clip: rect(25px, 9999px, 85px, 0);
+            transform: skew(0.2deg);
+        }
+        60% {
+            clip: rect(70px, 9999px, 45px, 0);
+            transform: skew(0.4deg);
+        }
+        65% {
+            clip: rect(15px, 9999px, 75px, 0);
+            transform: skew(0.1deg);
+        }
+        70% {
+            clip: rect(60px, 9999px, 30px, 0);
+            transform: skew(0.3deg);
+        }
+        75% {
+            clip: rect(80px, 9999px, 55px, 0);
+            transform: skew(0.5deg);
+        }
+        80% {
+            clip: rect(35px, 9999px, 90px, 0);
+            transform: skew(0.2deg);
+        }
+        85% {
+            clip: rect(50px, 9999px, 20px, 0);
+            transform: skew(0.4deg);
+        }
+        90% {
+            clip: rect(100px, 9999px, 65px, 0);
+            transform: skew(0.1deg);
+        }
+        95% {
+            clip: rect(40px, 9999px, 5px, 0);
+            transform: skew(0.3deg);
+        }
+        100% {
+            clip: rect(75px, 9999px, 50px, 0);
+            transform: skew(0.5deg);
+        }
+    }
+
+    @keyframes glitch-skew {
+        0% {
+            transform: skew(0deg);
+        }
+        10% {
+            transform: skew(-1deg);
+        }
+        20% {
+            transform: skew(1deg);
+        }
+        30% {
+            transform: skew(0deg);
+        }
+        40% {
+            transform: skew(0.5deg);
+        }
+        50% {
+            transform: skew(-0.5deg);
+        }
+        60% {
+            transform: skew(0deg);
+        }
+        70% {
+            transform: skew(-1deg);
+        }
+        80% {
+            transform: skew(1deg);
+        }
+        90% {
+            transform: skew(0deg);
+        }
+        100% {
+            transform: skew(0deg);
+        }
+    }
+</style>
+
+<script>
+    // Counter Animation
+    document.addEventListener("astro:page-load", () => {
+        const counters = document.querySelectorAll(".counter");
+
+        counters.forEach((counter) => {
+            const target = parseInt(counter.getAttribute("data-target") || "0");
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toString();
+                }
+            };
+
+            // Start animation after a delay
+            setTimeout(() => {
+                updateCounter();
+            }, 600);
+        });
+    });
+</script>
