@@ -1,0 +1,199 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { VideoPlayer } from "@/components/VideoPlayer";
+import Grid from "@/components/mdx/Grid.astro";
+import YouTube from "@/components/mdx/YouTube.astro";
+import Video from "@/components/mdx/Video.astro";
+
+export async function getStaticPaths() {
+    const works = await getCollection("work");
+    return works.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Helper to convert YouTube Watch URL to Embed URL
+const getEmbedUrl = (url: string | undefined) => {
+    if (!url) return undefined;
+
+    // Handle standard watch URL
+    if (url.includes("youtube.com/watch?v=")) {
+        const videoId = url.split("v=")[1].split("&")[0];
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    // Handle short URL
+    if (url.includes("youtu.be/")) {
+        const videoId = url.split("youtu.be/")[1].split("?")[0];
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    return url;
+};
+
+const embedUrl = getEmbedUrl(entry.data.videoUrl);
+const isMpd = entry.data.videoUrl?.includes(".mpd");
+---
+
+<Layout
+    title={`Bax Portfolio - ${entry.data.title}`}
+    description={entry.data.description}
+    image={entry.data.thumbnail}
+>
+    <div class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <header
+            class="container mx-auto px-4 py-8 flex justify-between items-center max-w-6xl"
+        >
+            <a
+                href="/"
+                class="text-sm font-medium tracking-wider hover:text-primary transition-colors flex items-center gap-2"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-arrow-left"
+                    ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"
+                    ></path></svg
+                >
+                BACK TO WORKS
+            </a>
+            <ThemeToggle client:load />
+        </header>
+
+        <main
+            class="container mx-auto px-4 py-8 max-w-8xl flex-grow animate-blur-in"
+        >
+            <!-- Video Section -->
+            <div
+                class="aspect-video w-full bg-black overflow-hidden shadow-2xl mb-12 rounded-lg border border-white/10"
+            >
+                {
+                    isMpd ? (
+                        <VideoPlayer
+                            client:load
+                            src={entry.data.videoUrl!}
+                            title={entry.data.title}
+                            poster={entry.data.thumbnail}
+                        />
+                    ) : embedUrl ? (
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src={embedUrl}
+                            title={entry.data.title}
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        />
+                    ) : (
+                        <div class="w-full h-full flex items-center justify-center text-muted-foreground bg-muted">
+                            <span class="text-lg">No Video URL Provided</span>
+                        </div>
+                    )
+                }
+            </div>
+
+            <!-- Project Info -->
+            <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-12">
+                <div class="space-y-8">
+                    <div>
+                        <h1 class="text-4xl font-bold tracking-tight mb-2">
+                            {entry.data.title}
+                        </h1>
+                        <p class="text-xl text-muted-foreground">
+                            {entry.data.client}
+                        </p>
+                    </div>
+
+                    <div class="prose prose-zinc dark:prose-invert max-w-none">
+                        <p class="text-lg leading-relaxed">
+                            {entry.data.description}
+                        </p>
+                        <div class="mt-8">
+                            <Content components={{ Grid, YouTube, Video }} />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="p-6 bg-card space-y-6">
+                        <div>
+                            <h3
+                                class="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
+                            >
+                                Roles
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                {
+                                    entry.data.role.map((r) => (
+                                        <span class="px-2 py-1 bg-secondary text-secondary-foreground text-xs font-medium">
+                                            {r}
+                                        </span>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3
+                                class="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3"
+                            >
+                                Year
+                            </h3>
+                            <!-- Format Date -->
+                            <p class="font-medium">
+                                {new Date(entry.data.date).getFullYear()}
+                            </p>
+                        </div>
+
+                        {
+                            entry.data.credits &&
+                                entry.data.credits.length > 0 && (
+                                    <div>
+                                        <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                                            Credits
+                                        </h3>
+                                        <ul class="space-y-2 text-sm">
+                                            {entry.data.credits.map(
+                                                (credit) => (
+                                                    <li class="flex justify-between">
+                                                        <span class="text-muted-foreground">
+                                                            {credit.role}
+                                                        </span>
+                                                        <span class="font-medium">
+                                                            {credit.name}
+                                                        </span>
+                                                    </li>
+                                                ),
+                                            )}
+                                        </ul>
+                                    </div>
+                                )
+                        }
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="py-12 text-center text-sm text-muted-foreground">
+            <p>
+                © {new Date().getFullYear()} Bax. All rights reserved.
+            </p>
+        </footer>
+    </div>
+</Layout>

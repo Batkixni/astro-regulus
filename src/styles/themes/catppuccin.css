@@ -1,0 +1,112 @@
+:root {
+    --background: oklch(0.9578 0.0058 264.5321);
+    --foreground: oklch(0.4355 0.0430 279.3250);
+    --card: oklch(0.9335 0.0087 264.5206);
+    --card-foreground: oklch(0.4355 0.0430 279.3250);
+    --popover: oklch(0.9578 0.0058 264.5321);
+    --popover-foreground: oklch(0.4355 0.0430 279.3250);
+    --primary: oklch(0.5547 0.2503 297.0156);
+    --primary-foreground: oklch(0.98 0.002 264.5321);
+    --secondary: oklch(0.9060 0.0117 264.5071);
+    --secondary-foreground: oklch(0.4355 0.0430 279.3250);
+    --muted: oklch(0.9335 0.0087 264.5206);
+    --muted-foreground: oklch(0.5 0.02 279.3250);
+    --accent: oklch(0.5586 0.2255 262.0866);
+    --accent-foreground: oklch(0.98 0.002 264.5321);
+    --destructive: oklch(0.5505 0.2155 19.8095);
+    --destructive-foreground: oklch(0.98 0.002 264.5321);
+    --border: oklch(0.9060 0.0117 264.5071);
+    --input: oklch(0.9060 0.0117 264.5071);
+    --ring: oklch(0.5547 0.2503 297.0156);
+    --chart-1: oklch(0.5547 0.2503 297.0156);
+    --chart-2: oklch(0.5586 0.2255 262.0866);
+    --chart-3: oklch(0.6250 0.1772 140.4448);
+    --chart-4: oklch(0.6023 0.0981 201.1047);
+    --chart-5: oklch(0.5505 0.2155 19.8095);
+    --sidebar: oklch(0.9335 0.0087 264.5206);
+    --sidebar-foreground: oklch(0.4355 0.0430 279.3250);
+    --sidebar-primary: oklch(0.5547 0.2503 297.0156);
+    --sidebar-primary-foreground: oklch(0.98 0.002 264.5321);
+    --sidebar-accent: oklch(0.9060 0.0117 264.5071);
+    --sidebar-accent-foreground: oklch(0.4355 0.0430 279.3250);
+    --sidebar-border: oklch(0.9060 0.0117 264.5071);
+    --sidebar-ring: oklch(0.5547 0.2503 297.0156);
+    --header: oklch(0.9578 0.0058 264.5321);
+    --header-foreground: oklch(0.4355 0.0430 279.3250);
+    --footer: oklch(0.9578 0.0058 264.5321);
+    --footer-foreground: oklch(0.4355 0.0430 279.3250);
+    --code: oklch(0.98 0.002 264.5321);
+    --code-foreground: oklch(0.5547 0.2503 297.0156);
+    --code-highlight: oklch(0.9335 0.0087 264.5206);
+    --code-number: oklch(0.6023 0.0981 201.1047);
+    --code-selection: oklch(0.9060 0.0117 264.5071);
+    --code-border: oklch(0.9060 0.0117 264.5071);
+    --radius: 0.75rem;
+
+}
+
+.dark {
+    --radius: 0.625rem;
+    --background: hsl(232 23.40% 18.43%);
+    /* base */
+    --foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --card: hsl(232 23.40% 18.43%);
+    /* base */
+    --card-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --popover: hsl(232 23.40% 18.43%);
+    /* base */
+    --popover-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --primary: hsl(220 82.81% 74.90%);
+    /* accent - Blue */
+    --primary-foreground: hsl(232 23.40% 18.43%);
+    /* base */
+    --secondary: hsl(230 18.80% 26.08%);
+    /* surface0 */
+    --secondary-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --muted: hsl(230 18.80% 26.08%);
+    /* surface0 */
+    --muted-foreground: hsl(228 39.22% 80.00%);
+    /* subtext1 */
+    --accent: hsl(230 18.80% 26.08%);
+    /* surface0 */
+    --accent-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --destructive: hsl(351 73.91% 72.94%);
+    /* red */
+    --border: hsl(231 15.61% 33.92%);
+    /* surface1 */
+    --input: hsl(231 15.61% 33.92%);
+    /* surface1 */
+    --ring: hsl(227 68.25% 87.65%);
+    /* text */
+    --chart-1: hsl(333 20.78% 38.04%);
+    /* red */
+    --chart-2: hsl(193 19.61% 38.04%);
+    /* teal */
+    --chart-3: hsl(224 26.67% 41.18%);
+    /* blue */
+    --chart-4: hsl(30 8.24% 42.35%);
+    /* yellow */
+    --chart-5: hsl(139 10.98% 38.82%);
+    /* green */
+    --sidebar: hsl(234 22.75% 17.25%);
+    /* mantle */
+    --sidebar-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --sidebar-primary: hsl(220 82.81% 74.90%);
+    /* accent - Blue */
+    --sidebar-primary-foreground: hsl(232 23.40% 18.43%);
+    /* base */
+    --sidebar-accent: hsl(232 23.40% 18.43%);
+    /* surface0 */
+    --sidebar-accent-foreground: hsl(227 68.25% 87.65%);
+    /* text */
+    --sidebar-border: hsl(231 15.61% 33.92%);
+    /* surface1 */
+    --sidebar-ring: hsl(231 15.61% 33.92%);
+    /* surface1 */
+}

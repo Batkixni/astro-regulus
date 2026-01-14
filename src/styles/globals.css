@@ -1,0 +1,127 @@
+@import "./themes/modern.css";
+/* 
+  To change the theme, uncomment one of the lines below and comment out the current one.
+  Make sure only one theme is active at a time.
+*/
+@import "./themes/caffeine.css";
+/* @import "./themes/catppuccin.css"; */
+/* @import "./themes/claude.css"; */
+/* @import "./themes/code.css"; */
+/* @import "./themes/desert.css"; */
+/* @import "./themes/ghibli.css"; */
+/* @import "./themes/marshmellow.css"; */
+/* @import "./themes/midnight-bloom.css"; */
+/* @import "./themes/pastel-dreams.css"; */
+/* @import "./themes/slack.css"; */
+/* @import "./themes/spotify.css"; */
+/* @import "./themes/starbuck.css"; */
+/* @import "./themes/sunset.css"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0rem;
+    --font-sans: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif !important;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* Ensure commonly transitioned properties are covered for all elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, text-decoration-color, fill, stroke;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+  }
+
+  img,
+  div,
+  span,
+  button,
+  a {
+    border-radius: 0 !important;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .animate-blur-in {
+    animation: blur-in 0.8s cubic-bezier(0.2, 0.4, 0.2, 1) forwards;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(10px);
+  }
+
+  /* Cinematic Scroll triggers (Layout 5) */
+  .cinematic-animate {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+  }
+
+  [data-active="true"] .cinematic-animate {
+    animation: blur-in 1s cubic-bezier(0.2, 0.4, 0.2, 1) forwards;
+  }
+
+  /* Stagger delays for grid items (up to 12 items) */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .delay-800 {
+    animation-delay: 800ms;
+  }
+}
+
+@keyframes blur-in {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}

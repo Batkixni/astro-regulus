@@ -1,0 +1,32 @@
+---
+interface Props {
+    src: string;
+}
+
+const { src } = Astro.props;
+
+// Helper to extract ID (reusing logic or simplified)
+const getYouTubeId = (url: string) => {
+    if (!url) return null;
+    if (url.includes("youtu.be/"))
+        return url.split("youtu.be/")[1].split("?")[0];
+    if (url.includes("v=")) return url.split("v=")[1].split("&")[0];
+    return url; // fallback if it's already an ID
+};
+
+const videoId = getYouTubeId(src);
+const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+---
+
+<div
+    class="aspect-video w-full bg-black overflow-hidden shadow-lg my-8 rounded-lg border border-white/10"
+>
+    <iframe
+        width="100%"
+        height="100%"
+        src={embedUrl}
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>

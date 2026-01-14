@@ -1,0 +1,15 @@
+---
+import { VideoPlayer as Player } from "@/components/VideoPlayer";
+
+interface Props {
+    src: string;
+}
+
+const { src } = Astro.props;
+---
+
+<div
+    class="my-8 aspect-video w-full rounded-lg border border-white/10 overflow-hidden shadow-lg"
+>
+    <Player client:visible src={src} />
+</div>
