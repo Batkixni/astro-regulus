@@ -1,5 +1,5 @@
 ---
-const { cols = 2 } = Astro.props;
+const { cols = 2, variant = "default" } = Astro.props;
 
 const n = Number(cols);
 
@@ -12,8 +12,13 @@ const gridCols: Record<number, string> = {
 };
 
 const colClass = gridCols[n] || "grid-cols-1 sm:grid-cols-2";
+
+const variantClass =
+    variant === "bento"
+        ? "grid-cols-1 sm:grid-cols-2 [&>*:first-child]:sm:row-span-2"
+        : colClass;
 ---
 
-<div class={`grid grid-cols-1 ${colClass} gap-4 my-8 [&>p]:contents`}>
+<div class={`grid ${variantClass} gap-4 my-8 [&>p]:contents`}>
     <slot />
 </div>
