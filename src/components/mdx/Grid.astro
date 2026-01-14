@@ -13,12 +13,93 @@ const gridCols: Record<number, string> = {
 
 const colClass = gridCols[n] || "grid-cols-1 sm:grid-cols-2";
 
-const variantClass =
-    variant === "bento"
-        ? "grid-cols-1 sm:grid-cols-2 [&>*:first-child]:sm:row-span-2"
-        : colClass;
+const isBento = variant === "bento";
+const containerClass = isBento
+    ? "flex flex-col sm:flex-row w-full bento-container mt-3 mb-[48px]"
+    : `grid ${colClass} my-3`;
 ---
 
-<div class={`grid ${variantClass} gap-4 my-8 [&>p]:contents`}>
+<div class={`${containerClass} gap-4 [&>p]:contents`}>
     <slot />
 </div>
+
+<script>
+    function adjustBentoGrid() {
+        const bentos = document.querySelectorAll(".bento-container");
+
+        bentos.forEach((container) => {
+            const images = container.querySelectorAll("img");
+
+            // Wait for all images in this container to load
+            const promises = Array.from(images).map((img) => {
+                if (img.complete) return Promise.resolve();
+                return new Promise((resolve) =>
+                    img.addEventListener("load", resolve),
+                );
+            });
+
+            Promise.all(promises).then(() => {
+                applyBentoLayout(container as HTMLElement, images);
+            });
+        });
+    }
+
+    function applyBentoLayout(
+        container: HTMLElement,
+        images: NodeListOf<HTMLImageElement>,
+    ) {
+        if (images.length === 3) {
+            const img0 = images[0];
+            const img1 = images[1];
+            const img2 = images[2];
+
+            const isPortrait = (img: HTMLImageElement) =>
+                img.naturalHeight > img.naturalWidth;
+
+            // Check Pattern: Left (Portrait) + Right Stack (Landscape/Wide)
+            // We use specific check: 1st is Portrait, others are NOT Portrait (i.e., Square or Landscape)
+            if (isPortrait(img0) && !isPortrait(img1) && !isPortrait(img2)) {
+                // Switch to Grid Layout
+                container.classList.remove("flex", "flex-col", "sm:flex-row");
+                container.classList.add(
+                    "grid",
+                    "grid-cols-1",
+                    "sm:grid-cols-2",
+                    "gap-4",
+                );
+
+                // Reset standard styles
+                images.forEach((img) => {
+                    img.style.flex = "";
+                    img.style.minWidth = "";
+                    img.style.maxWidth = "100%";
+                    img.classList.add("w-full", "h-full", "object-cover");
+                });
+
+                // Apply Span to first image
+                img0.classList.add("sm:row-span-2");
+                return;
+            }
+        }
+
+        // Fallback to Flexbox Logic
+        images.forEach((img) => setFlex(img));
+    }
+
+    function setFlex(img: HTMLImageElement) {
+        // Calculate aspect ratio
+        const ratio = img.naturalWidth / img.naturalHeight;
+
+        // Apply styles directly to the image (since paragraphs are unwrapped via display: contents)
+        // flex-grow: ratio ensures they share width proportional to their aspect ratio
+        // flex-basis: 0 ensures the ratio is the only factor
+        img.style.flex = `${ratio} ${ratio} 0`;
+        img.style.minWidth = "0"; // Allow shrinking if needed
+        img.style.height = "auto";
+        img.style.maxWidth = "100%";
+    }
+
+    // Run on load and View Transitions navigation
+    adjustBentoGrid();
+    document.addEventListener("astro:page-load", adjustBentoGrid);
+</script>
