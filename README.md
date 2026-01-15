@@ -28,6 +28,11 @@ An Astro portfolio template for designer, filmmaker, or any type of creator.
 | ------------------------------------------ | ------------------------------------------ |
 | ![Preview 2](https://files.catbox.moe/sfwbxz.png) | ![Preview 3](https://files.catbox.moe/rm090h.png) |
 
+## Tech Stack
+
+| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [shadcn/ui](https://ui.shadcn.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+
 
 [English](#english) | [正體中文](#正體中文)
 
@@ -228,11 +233,6 @@ theme: {
   }
 }
 ```
-
-## 🛠️ Tech Stack
-
-| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [shadcn/ui](https://ui.shadcn.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ---
 
@@ -485,14 +485,6 @@ theme: {
   }
 }
 ```
-
----
-
-## 🛠️ 技術
-
-| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [shadcn/ui](https://ui.shadcn.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
-| :------------------------------- | :----------------------------- | :--------------------------------------- | :------------------------ | :------------------------------- | :-------------------------------------------- | :---------------------- 
-| :---------------------- |
 
 ---
 
