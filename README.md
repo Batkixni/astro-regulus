@@ -26,10 +26,10 @@ An Astro portfolio template for designer, filmmaker, or any type of creator.
 
 | Layout 2 | Layout 3 |
 | ------------------------------------------ | ------------------------------------------ |
-| ![Preview 3](https://files.catbox.moe/sfwbxz.png) | ![Preview 4](https://files.catbox.moe/rm090h.png) |
+| ![Preview 2](https://files.catbox.moe/sfwbxz.png) | ![Preview 3](https://files.catbox.moe/rm090h.png) |
 
 
-[English](#english) | [正體中文](#chinese)
+[English](#english) | [正體中文](#正體中文)
 
 </div>
 
