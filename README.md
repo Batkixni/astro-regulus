@@ -1,42 +1,59 @@
-# 🎬 Bax's Video Portfolio
+![Cover](https://files.catbox.moe/kxkzv3.png)
 
-A stunning, modern video portfolio website built with Astro v5, featuring multiple customizable layouts, DASH streaming support, and seamless MDX integration.
+<div align="center">
+    
+# Regulus 
 
-![Astro](https://img.shields.io/badge/Astro-5.16-FF5D01?logo=astro&logoColor=white)
-![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+</div>
+
+
+<div align="center">
+
+An Astro portfolio template for designer, filmmaker, or any type of creator. 
+
+[![License]](LICENSE)
+
+[![Star on GitHub](https://img.shields.io/github/stars/Batkixni/astro-regulus.svg?style=social)](https://github.com/Batkixni/astro-regulus/stargazers)
+![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
+![React](https://img.shields.io/badge/Bun-CA9360?logo=bun&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-232323?logo=tailwind-css&logoColor=white)
+![shadcnui](https://img.shields.io/badge/shadcnui-232323?logo=shadcnui&logoColor=white)  
+
+
+|**Layout 1**|
+| ------------------------------------------ |
+| ![Preview 1](https://files.catbox.moe/rm090h.png) |
+
+| Layout 2 | Layout 3 |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Preview 3](https://files.catbox.moe/sfwbxz.png) | ![Preview 4](https://files.catbox.moe/vf51c0.png) |
+
+
+[English](#english) | [正體中文](#chinese)
+
+</div>
+
+# English
 
 ---
 
 ## ✨ Features
 
-### 🎨 **5 Unique Portfolio Layouts**
-Switch between different visual styles by changing a single configuration variable:
+- Tailored for Creatives – Specifically designed for designers and creative professionals to showcase their work.
+- Seamless Experience & Peak Performance – Effortless to use and lightning-fast to deploy, powered by the cutting-edge performance of Astro and Bun.
+- Fully Customizable Themes – Built with shadcn/ui and Tailwind CSS, offering deep customization and a variety of beautiful built-in themes.
+- Versatile Layout Options – Switch between three distinct layouts anytime to find the perfect fit for your style.
+- SEO Optimized – High visibility guaranteed with automated Open Graph tags generated for every project page.
+- MDX-Powered Content – Build your portfolio as easily as writing a blog post using the flexibility of MDX.
 
-1. **Centered Layout** - Classic, clean centered design with grouped projects
-2. **Left Aligned (Bax Style)** - Bold, editorial-style layout with large typography
-3. **Split View** - Modern sidebar navigation with scrollable content area
-4. **Bento/Mosaic** - Dynamic grid with varying card sizes for visual interest
-5. **Cinematic Scroll** - Full-screen snap sections with immersive transitions
+---
 
-### 🎥 **Advanced Video Support**
-- **DASH Streaming** - `.mpd` file support with adaptive bitrate streaming via Vidstack
-- **YouTube Embeds** - Automatic URL conversion for YouTube videos
-- **Thumbnail Fallback** - Displays project thumbnails when video URLs aren't provided
-- **Custom Video Player** - React-based Vidstack player with modern controls
+---
 
-### 📝 **MDX Content System**
-- **Type-Safe Content Collections** - Zod schema validation for project metadata
-- **Custom Components** - `<Grid>`, `<YouTube>`, and `<Video>` components for rich content
-- **Frontmatter Support** - Structured project data (title, client, roles, date, genre, credits)
+## 📹 Example Instances
 
-### � **Modern UX**
-- **View Transitions** - Smooth page navigation animations
-- **Theme Toggle** - Light/dark mode support
-- **Responsive Design** - Mobile-first approach with Tailwind CSS
-- **Blur-in Animations** - Elegant entrance effects for content
-- **Genre Grouping** - Automatic categorization of projects by genre
+| [Bax Portfolio](https://bax.sorai.tw) |
+| :--- |
 
 ---
 
@@ -73,43 +90,6 @@ bun run preview
 
 ---
 
-## 📁 Project Structure
-
-```
-astro-bxwork/
-├── src/
-│   ├── components/
-│   │   ├── mdx/              # Custom MDX components
-│   │   │   ├── Grid.astro
-│   │   │   ├── YouTube.astro
-│   │   │   └── Video.astro
-│   │   ├── ThemeToggle.tsx   # Dark/light mode toggle
-│   │   └── VideoPlayer.tsx   # Vidstack player wrapper
-│   ├── content/
-│   │   ├── config.ts         # Content collection schema
-│   │   └── work/             # Project MDX files
-│   │       └── cinematic/    # Genre-based subdirectories
-│   ├── layouts/
-│   │   └── Layout.astro      # Base layout with SEO
-│   ├── pages/
-│   │   ├── index.astro       # Homepage with 5 layout options
-│   │   ├── 404.astro         # Custom 404 page
-│   │   └── work/
-│   │       └── [...slug].astro  # Dynamic project pages
-│   ├── styles/               # Global styles and animations
-│   └── lib/
-│       └── utils.ts          # Utility functions (cn, etc.)
-├── public/
-│   ├── header.jpg            # Profile avatar
-│   ├── og-image.png          # Social media preview
-│   └── favico.jpg            # Favicon
-├── astro.config.mjs
-├── tailwind.config.mjs
-└── package.json
-```
-
----
-
 ## ⚙️ Configuration
 
 ### Switching Layouts
@@ -118,7 +98,7 @@ Edit `src/pages/index.astro` and change the `CURRENT_LAYOUT` constant:
 
 ```typescript
 // Line 12 in index.astro
-const CURRENT_LAYOUT: number = 1; // Change to 1-5
+const CURRENT_LAYOUT: number = 1; // Change to 1-3
 ```
 
 ### Profile Information
@@ -148,10 +128,10 @@ Create a new `.mdx` file in `src/content/work/`:
 title: "Project Title"
 client: "Client Name"
 role: ["Motion Designer", "Editor"]
-date: 2024-01-15
+date: 2026-01-15
 genre: "Motion"
 thumbnail: "/path/to/thumbnail.jpg"
-videoUrl: "https://example.com/video.mpd" # Optional: .mpd, YouTube URL, or omit
+videoUrl: "https://example.com/video.mpd" # Optional: .mpd/.m3u8, YouTube URL, or omit
 description: "Project description"
 credits: # Optional
   - name: "John Doe"
@@ -168,7 +148,67 @@ Your project content here. You can use custom components:
   <Video src="/video1.mp4" />
   <Video src="/video2.mp4" />
 </Grid>
+
+<Grid variant="bento">
+  <img src="/picture1.jpg" alt="Vertical" />
+  <img src="/picture2.jpg" alt="Horizontal 1" />
+  <img src="/picture3.jpg" alt="Horizontal 2" />
+</Grid>
 ```
+
+### Video Utils
+
+To embed Youtube video, you can use the following syntax in your .mdx file.
+
+```mdx
+<YouTube url="https://youtube.com/watch?v=..." />
+```
+
+Else, if you want to embed other videos outside from Youtube, use:
+
+```mdx
+<Video src="/video-example.mp4" />
+```
+
+### Grid Utils
+
+To create grid in pages, you can use the following syntax in your .mdx file.
+
+#### Auto grid
+
+```mdx
+<Grid cols={2}>
+  <Video src="/video1.mp4" />
+  <Video src="/video2.mp4" />
+</Grid>
+```
+In this case, means you will have a 2 collum data in 1 row.
+Following this logic, for more examples:
+
+```mdx
+<Grid cols={3}>
+  <Video src="/video1.mp4" />
+  <Video src="/video2.mp4" />
+  <Video src="/video3.mp4" />
+  <Video src="/video4.mp4" />
+  <Video src="/video5.mp4" />
+  <Video src="/video6.mp4" />
+</Grid>
+```
+This means you will generate a 2 row data with 3 collum inside.
+
+#### Bento grid
+
+```mdx
+<Grid variant="bento">
+  <img src="/picture1.jpg"/>
+  <img src="/picture2.jpg"/>
+  <img src="/picture3.jpg">
+</Grid>
+```
+
+This will create a responsive bento grid for these 3 pictures, the picture will automaticlly fit into the grid.
+![Bento Grid](https://files.catbox.moe/wu48cw.png)
 
 ---
 
@@ -189,44 +229,13 @@ theme: {
 }
 ```
 
-### Animations
-
-Custom animations are defined in `src/styles/`. The project includes:
-- `animate-blur-in` - Fade and blur entrance effect
-- Staggered delays for sequential animations
-- Smooth transitions for hover states
-
----
-
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **Astro v5** | Static site generator with islands architecture |
-| **React 19** | Interactive components (theme toggle, video player) |
-| **Tailwind CSS** | Utility-first styling framework |
-| **MDX** | Markdown with JSX for rich content |
-| **Vidstack** | Modern video player with DASH support |
-| **TypeScript** | Type-safe development |
-| **Bun** | Fast JavaScript runtime and package manager |
+| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ---
 
-## 📦 Key Dependencies
-
-```json
-{
-  "@astrojs/mdx": "^4.3.13",
-  "@astrojs/react": "^4.4.2",
-  "@astrojs/tailwind": "^6.0.2",
-  "@vidstack/react": "^1.12.13",
-  "astro": "^5.16.9",
-  "react": "^19.2.3",
-  "tailwindcss": "^3.4.17"
-}
-```
-
----
 
 ## 🎯 Content Schema
 
@@ -279,78 +288,34 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) 
 
 ---
 
-## 🙏 Acknowledgments
-
-- **Astro Team** - For the amazing framework
-- **Vidstack** - For the powerful video player
-- **Tailwind CSS** - For the utility-first styling system
-
----
-
-## 📞 Contact
-
-**Bax**  
-Email: bax@sorai.tw  
-Twitter: [@baxartworkz](https://x.com/baxartworkz)
-
----
-
-<div align="center">
-
-**Built with ❤️ and way too much caffeine**
-
-</div>
-
----
-
-# 🎬 Bax 的影片作品集
-
-一個令人驚艷的現代化影片作品集網站，使用 Astro v5 建構，具備多種可自訂的版面配置、DASH 串流支援，以及無縫的 MDX 整合。
-
-![Astro](https://img.shields.io/badge/Astro-5.16-FF5D01?logo=astro&logoColor=white)
-![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
-
----
+# 正體中文
 
 ## ✨ 功能特色
 
-### 🎨 **5 種獨特的作品集版面**
-只需更改一個設定變數即可切換不同的視覺風格：
-
-1. **置中版面** - 經典、簡潔的置中設計，專案分組顯示
-2. **靠左對齊（Bax 風格）** - 大膽的編輯風格版面，搭配大型排版
-3. **分割視圖** - 現代化側邊欄導航，搭配可捲動的內容區域
-4. **Bento/馬賽克** - 動態網格，卡片大小多變，視覺效果豐富
-5. **電影式捲動** - 全螢幕吸附區塊，沉浸式轉場效果
-
-### � **進階影片支援**
-- **DASH 串流** - 透過 Vidstack 支援 `.mpd` 檔案與自適應位元率串流
-- **YouTube 嵌入** - 自動轉換 YouTube 影片網址
-- **縮圖備援** - 當沒有提供影片網址時顯示專案縮圖
-- **自訂影片播放器** - 基於 React 的 Vidstack 播放器，具備現代化控制介面
-
-### 📝 **MDX 內容系統**
-- **型別安全的內容集合** - 使用 Zod schema 驗證專案中繼資料
-- **自訂元件** - `<Grid>`、`<YouTube>` 和 `<Video>` 元件，打造豐富內容
-- **Frontmatter 支援** - 結構化專案資料（標題、客戶、角色、日期、類型、製作人員）
-
-### 🎯 **現代化使用者體驗**
-- **View Transitions** - 流暢的頁面導航動畫
-- **主題切換** - 支援淺色/深色模式
-- **響應式設計** - 採用 Tailwind CSS 的行動優先設計
-- **模糊淡入動畫** - 優雅的內容進場效果
-- **類型分組** - 依類型自動分類專案
+- **為創作者量身打造** – 專為設計師與創意工作者設計，用於展示個人作品。
+- **順暢體驗與極致效能** – 使用上毫不費力、部署速度飛快，由 Astro 與 Bun 提供前沿效能。
+- **完整主題客製化** – 基於 shadcn/ui 與 Tailwind CSS 打造，提供深度客製能力與多款精美內建主題。
+- **多樣化版面配置** – 可隨時在三種不同版型之間切換，找到最符合你風格的呈現方式。
+- **SEO 最佳化** – 每個專案頁面都會自動產生 Open Graph 標籤，確保高度曝光。
+- **MDX 驅動內容** – 像寫部落格一樣輕鬆建立作品集，享受 MDX 帶來的高度彈性。
 
 ---
 
-## � 快速開始
+---
 
-### 前置需求
+## 📹 範例網站
+
+| [Bax Portfolio](https://bax.sorai.tw) |
+| :--- |
+
+---
+
+## 🚀 快速開始
+
+### 需求環境
 - [Bun](https://bun.sh/)（推薦）或 Node.js 18+
 
-### 安裝步驟
+### 安裝
 
 ```bash
 # 複製專案
@@ -362,14 +327,14 @@ bun install
 
 # 啟動開發伺服器
 bun run dev
-```
+````
 
-網站將在 `http://localhost:4321` 上運行
+網站將會在 `http://localhost:4321` 提供服務
 
-### 建構正式版本
+### 建置正式版本
 
 ```bash
-# 建立最佳化的正式版本
+# 建立最佳化的正式環境版本
 bun run build
 
 # 預覽正式版本
@@ -378,64 +343,27 @@ bun run preview
 
 ---
 
-## 📁 專案結構
-
-```
-astro-bxwork/
-├── src/
-│   ├── components/
-│   │   ├── mdx/              # 自訂 MDX 元件
-│   │   │   ├── Grid.astro
-│   │   │   ├── YouTube.astro
-│   │   │   └── Video.astro
-│   │   ├── ThemeToggle.tsx   # 深色/淺色模式切換
-│   │   └── VideoPlayer.tsx   # Vidstack 播放器包裝器
-│   ├── content/
-│   │   ├── config.ts         # 內容集合 schema
-│   │   └── work/             # 專案 MDX 檔案
-│   │       └── cinematic/    # 依類型分類的子目錄
-│   ├── layouts/
-│   │   └── Layout.astro      # 基礎版面配置（含 SEO）
-│   ├── pages/
-│   │   ├── index.astro       # 首頁（5 種版面選項）
-│   │   ├── 404.astro         # 自訂 404 頁面
-│   │   └── work/
-│   │       └── [...slug].astro  # 動態專案頁面
-│   ├── styles/               # 全域樣式與動畫
-│   └── lib/
-│       └── utils.ts          # 工具函式（cn 等）
-├── public/
-│   ├── header.jpg            # 個人頭像
-│   ├── og-image.png          # 社群媒體預覽圖
-│   └── favico.jpg            # 網站圖示
-├── astro.config.mjs
-├── tailwind.config.mjs
-└── package.json
-```
-
----
-
 ## ⚙️ 設定
 
-### 切換版面配置
+### 切換版型配置
 
-編輯 `src/pages/index.astro` 並更改 `CURRENT_LAYOUT` 常數：
+編輯 `src/pages/index.astro`，修改 `CURRENT_LAYOUT` 常數：
 
-```typescript
+```ts
 // index.astro 第 12 行
-const CURRENT_LAYOUT: number = 1; // 改為 1-5
+const CURRENT_LAYOUT: number = 1; // 可設為 1-3
 ```
 
-### 個人資訊
+### 個人資料設定
 
-在 `src/pages/index.astro` 中更新您的個人資訊：
+在 `src/pages/index.astro` 更新你的個人資訊：
 
-```typescript
+```ts
 const PROFILE = {
-    name: "您的名字",
-    role: "您的職位 / 公司",
+    name: "Your Name",
+    role: "Your Role / Company",
     email: "your@email.com",
-    bio: "您的個人簡介",
+    bio: "Your bio description",
     avatar: "/header.jpg",
     links: {
         twitter: "x.com/yourhandle",
@@ -446,26 +374,26 @@ const PROFILE = {
 
 ### 新增專案
 
-在 `src/content/work/` 中建立新的 `.mdx` 檔案：
+在 `src/content/work/` 建立新的 `.mdx` 檔案：
 
 ```mdx
 ---
-title: "專案標題"
-client: "客戶名稱"
-role: ["動態設計師", "剪輯師"]
-date: 2024-01-15
+title: "Project Title"
+client: "Client Name"
+role: ["Motion Designer", "Editor"]
+date: 2026-01-15
 genre: "Motion"
 thumbnail: "/path/to/thumbnail.jpg"
-videoUrl: "https://example.com/video.mpd" # 選填：.mpd、YouTube 網址，或省略
-description: "專案描述"
+videoUrl: "https://example.com/video.mpd" # 選填：.mpd/.m3u8、YouTube 連結，或省略
+description: "Project description"
 credits: # 選填
-  - name: "張三"
-    role: "導演"
+  - name: "John Doe"
+    role: "Director"
 ---
 
-## 專案詳情
+## 專案說明
 
-您的專案內容。可以使用自訂元件：
+你的專案內容寫在這裡，你可以使用自訂元件：
 
 <YouTube url="https://youtube.com/watch?v=..." />
 
@@ -473,77 +401,108 @@ credits: # 選填
   <Video src="/video1.mp4" />
   <Video src="/video2.mp4" />
 </Grid>
+
+<Grid variant="bento">
+  <img src="/picture1.jpg" alt="Vertical" />
+  <img src="/picture2.jpg" alt="Horizontal 1" />
+  <img src="/picture3.jpg" alt="Horizontal 2" />
+</Grid>
 ```
+
+### 影片工具
+
+若要嵌入 YouTube 影片，可在 `.mdx` 檔案中使用以下語法：
+
+```mdx
+<YouTube url="https://youtube.com/watch?v=..." />
+```
+
+若要嵌入非 YouTube 的影片，請使用：
+
+```mdx
+<Video src="/video-example.mp4" />
+```
+
+### Grid 工具
+
+你可以在頁面中建立 Grid 排版，使用以下語法。
+
+#### 自動 Grid
+
+```mdx
+<Grid cols={2}>
+  <Video src="/video1.mp4" />
+  <Video src="/video2.mp4" />
+</Grid>
+```
+
+上述範例代表一列中有 2 個欄位。依此類推，例如：
+
+```mdx
+<Grid cols={3}>
+  <Video src="/video1.mp4" />
+  <Video src="/video2.mp4" />
+  <Video src="/video3.mp4" />
+  <Video src="/video4.mp4" />
+  <Video src="/video5.mp4" />
+  <Video src="/video6.mp4" />
+</Grid>
+```
+
+這代表會產生 2 列，每列 3 個欄位的版面。
+
+#### Bento Grid
+
+```mdx
+<Grid variant="bento">
+  <img src="/picture1.jpg"/>
+  <img src="/picture2.jpg"/>
+  <img src="/picture3.jpg">
+</Grid>
+```
+
+這會建立一個響應式的 Bento Grid，圖片會自動適配版面配置。
+![Bento Grid](https://files.catbox.moe/wu48cw.png)
 
 ---
 
-## 🎨 自訂設定
+## 🎨 客製化
 
 ### 主題顏色
 
-編輯 `tailwind.config.mjs` 來自訂配色方案：
+編輯 `tailwind.config.mjs` 來自訂配色：
 
-```javascript
+```js
 theme: {
   extend: {
     colors: {
       primary: "hsl(var(--primary))",
-      // ... 自訂其他顏色
+      // ... 其他顏色設定
     }
   }
 }
 ```
 
-### 動畫效果
+---
 
-自訂動畫定義在 `src/styles/` 中。專案包含：
-- `animate-blur-in` - 淡入與模糊進場效果
-- 階段式延遲，實現連續動畫
-- 滑鼠懸停狀態的流暢轉場
+## 🛠️ 技術
+
+| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
+| :------------------------------- | :----------------------------- | :--------------------------------------- | :------------------------ | :------------------------------- | :-------------------------------------------- | :---------------------- |
 
 ---
 
-## �️ 技術堆疊
+## 🎯 內容結構 Schema
 
-| 技術 | 用途 |
-|------|------|
-| **Astro v5** | 採用 islands 架構的靜態網站生成器 |
-| **React 19** | 互動式元件（主題切換、影片播放器） |
-| **Tailwind CSS** | Utility-first 樣式框架 |
-| **MDX** | 支援 JSX 的 Markdown，打造豐富內容 |
-| **Vidstack** | 現代化影片播放器，支援 DASH |
-| **TypeScript** | 型別安全的開發環境 |
-| **Bun** | 快速的 JavaScript 執行環境與套件管理器 |
+專案內容會依照以下 Zod Schema 驗證：
 
----
-
-## 📦 主要相依套件
-
-```json
-{
-  "@astrojs/mdx": "^4.3.13",
-  "@astrojs/react": "^4.4.2",
-  "@astrojs/tailwind": "^6.0.2",
-  "@vidstack/react": "^1.12.13",
-  "astro": "^5.16.9",
-  "react": "^19.2.3",
-  "tailwindcss": "^3.4.17"
-}
-```
-
----
-
-## 🎯 內容 Schema
-
-專案使用以下 Zod schema 進行驗證：
-
-```typescript
+```ts
 {
   title: string,
   client: string,
   role: string[],
   date: Date,
-  genre: string (預設: "Motion"),
+  genre: string (預設值: "Motion"),
   thumbnail: string,
   videoUrl?: string, // 選填
   description: string,
@@ -558,19 +517,22 @@ theme: {
 
 ## 🌐 部署
 
-本專案可部署至任何靜態網站託管平台：
+此專案可部署至任何靜態網站平台：
 
 ### Vercel
+
 ```bash
 vercel deploy
 ```
 
 ### Netlify
+
 ```bash
 netlify deploy --prod
 ```
 
 ### Cloudflare Pages
+
 ```bash
 npm run build
 # 上傳 dist/ 資料夾
@@ -580,28 +542,16 @@ npm run build
 
 ## 📄 授權條款
 
-本專案採用 GPL-3.0 授權條款 - 詳見 [LICENSE](LICENSE) 檔案。
-
----
-
-## 🙏 致謝
-
-- **Astro 團隊** - 提供絕佳的框架
-- **Vidstack** - 提供強大的影片播放器
-- **Tailwind CSS** - 提供 utility-first 樣式系統
-
----
-
-## 📞 聯絡方式
-
-**Bax**  
-Email: bax@sorai.tw  
-Twitter: [@baxartworkz](https://x.com/baxartworkz)
+本專案採用 GPL-3.0 授權，詳情請參閱 [LICENSE](LICENSE) 檔案。
 
 ---
 
 <div align="center">
 
-**用 ❤️ 和過量的咖啡因打造**
+**Built with ❤️ by [Bax](https://kita.sorai.tw/bax)**
 
 </div>
+
+
+
+[License]: https://img.shields.io/github/license/Batkixni/astro-regulus?color=0a0a0a&logo=github&logoColor=fff&style=for-the-badge
