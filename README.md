@@ -231,8 +231,8 @@ theme: {
 
 ## 🛠️ Tech Stack
 
-| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [shadcn/ui](https://ui.shadcn.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 
 ---
 
@@ -276,7 +276,7 @@ netlify deploy --prod
 
 ### Cloudflare Pages
 ```bash
-npm run build
+bun run build
 # Upload dist/ folder
 ```
 
@@ -490,8 +490,9 @@ theme: {
 
 ## 🛠️ 技術
 
-| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
+| [Astro v5](https://astro.build/) | [React 19](https://react.dev/) | [Tailwind CSS](https://tailwindcss.com/) | [shadcn/ui](https://ui.shadcn.com/) | [MDX](https://mdxjs.com/) | [Vidstack](https://vidstack.io/) | [TypeScript](https://www.typescriptlang.org/) | [Bun](https://bun.com/) |
 | :------------------------------- | :----------------------------- | :--------------------------------------- | :------------------------ | :------------------------------- | :-------------------------------------------- | :---------------------- |
+| :---------------------- |
 
 ---
 
@@ -537,7 +538,7 @@ netlify deploy --prod
 ### Cloudflare Pages
 
 ```bash
-npm run build
+bun run build
 # 上傳 dist/ 資料夾
 ```
 
