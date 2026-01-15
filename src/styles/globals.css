@@ -3,9 +3,9 @@
   To change the theme, uncomment one of the lines below and comment out the current one.
   Make sure only one theme is active at a time.
 */
-/* @import "./themes/caffeine.css"; */
+@import "./themes/caffeine.css";
 /* @import "./themes/catppuccin.css"; */
-@import "./themes/claude.css";
+/* @import "./themes/claude.css"; */
 /* @import "./themes/code.css"; */
 /* @import "./themes/desert.css"; */
 /* @import "./themes/ghibli.css"; */
