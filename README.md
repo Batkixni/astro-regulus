@@ -286,7 +286,7 @@ npm run build
 
 This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
-> ![WARNING]
+> [!WARNING]
 > The license dose not include example or placeholder pictures contain in this template, all rights to these photos are reserved by Bax.
 
 ---
@@ -547,7 +547,7 @@ npm run build
 
 本專案採用 GPL-3.0 授權，詳情請參閱 [LICENSE](LICENSE) 檔案。
 
-> ![WARNING]
+> [!WARNING]
 > 此專案版權許可並不包含此模板含有的占位符或範例圖片，那些圖片的版權唯一持有者為Bax。
 
 ---
