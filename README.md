@@ -22,11 +22,11 @@ An Astro portfolio template for designer, filmmaker, or any type of creator.
 
 |**Layout 1**|
 | ------------------------------------------ |
-| ![Preview 1](https://files.catbox.moe/rm090h.png) |
+| ![Preview 1](https://files.catbox.moe/vf51c0.png) |
 
 | Layout 2 | Layout 3 |
 | ------------------------------------------ | ------------------------------------------ |
-| ![Preview 3](https://files.catbox.moe/sfwbxz.png) | ![Preview 4](https://files.catbox.moe/vf51c0.png) |
+| ![Preview 3](https://files.catbox.moe/sfwbxz.png) | ![Preview 4](https://files.catbox.moe/rm090h.png) |
 
 
 [English](#english) | [正體中文](#chinese)
