@@ -71,7 +71,7 @@ An Astro portfolio template for designer, filmmaker, or any type of creator.
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Batkixni/astro-regulus.git
 cd astro-bxwork
 
 # Install dependencies
@@ -322,7 +322,7 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) 
 
 ```bash
 # 複製專案
-git clone <your-repo-url>
+git clone https://github.com/Batkixni/astro-regulus.git
 cd astro-bxwork
 
 # 安裝相依套件
