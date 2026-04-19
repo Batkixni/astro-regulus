@@ -29,9 +29,15 @@ const PROFILE = {
 const portfolioData = await getCollection("work");
 
 // Sort by date descending
-const sortedPortfolio = portfolioData.sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-);
+const sortedPortfolio = [...portfolioData].sort((a, b) => {
+    const dateDiff =
+        new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+
+    // Keep ordering deterministic when multiple entries share the same date.
+    if (dateDiff !== 0) return dateDiff;
+
+    return a.slug.localeCompare(b.slug);
+});
 
 // Group by genre
 const groupedPortfolio = sortedPortfolio.reduce(
