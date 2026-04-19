@@ -20,7 +20,7 @@ const PROFILE = {
     bio: "A 20 yo self-taught designer have experience in graphic design and motion design. Currently working as a freelancer.",
     avatar: "/header.jpg",
     links: {
-        twitter: "x.com/baxartworkz",
+        twitter: "https://x.com/baxartworkz",
         email: "mailto:bax@sorai.tw",
     },
 };
@@ -208,7 +208,7 @@ const genreSortedPortfolio = Object.values(groupedPortfolio).flat();
 
                     <button
                         id="back-to-top"
-                        class="p-2 hover:bg-muted transition-all opacity-0 translate-y-4 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+                        class="p-2 hover:bg-muted transition-all opacity-0 translate-y-4 invisible pointer-events-none data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
                         aria-label="Back to top"
                         title="Back to top"
                     >
@@ -505,9 +505,16 @@ const genreSortedPortfolio = Object.values(groupedPortfolio).flat();
             // Logic for Layout 1/2/3/4 Back to Top (Existing)
             const backToTopBtn = document.getElementById("back-to-top");
             if (backToTopBtn) {
-                backToTopBtn.addEventListener("click", () => {
+                backToTopBtn.onclick = () => {
                     window.scrollTo({ top: 0, behavior: "smooth" });
-                });
+                };
+
+                const previousScrollHandler =
+                    window.__backToTopScrollHandler;
+                if (typeof previousScrollHandler === "function") {
+                    window.removeEventListener("scroll", previousScrollHandler);
+                }
+
                 // ... existing toggle logic ...
                 const toggleVisibility = () => {
                     const scrolled = window.scrollY > 300;
@@ -517,9 +524,17 @@ const genreSortedPortfolio = Object.values(groupedPortfolio).flat();
                             "invisible",
                             "pointer-events-none",
                         );
+                    } else {
+                        backToTopBtn.classList.add(
+                            "invisible",
+                            "pointer-events-none",
+                        );
                     }
                 };
+
+                window.__backToTopScrollHandler = toggleVisibility;
                 window.addEventListener("scroll", toggleVisibility);
+                toggleVisibility();
             }
         });
     </script>

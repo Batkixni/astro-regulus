@@ -1,9 +1,11 @@
 ---
 interface Props {
-    src: string;
+    src?: string;
+    url?: string;
 }
 
-const { src } = Astro.props;
+const { src, url } = Astro.props;
+const input = src ?? url ?? "";
 
 // Helper to extract ID (reusing logic or simplified)
 const getYouTubeId = (url: string) => {
@@ -14,19 +16,28 @@ const getYouTubeId = (url: string) => {
     return url; // fallback if it's already an ID
 };
 
-const videoId = getYouTubeId(src);
-const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+const videoId = getYouTubeId(input);
+const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null;
 ---
 
 <div
     class="aspect-video w-full bg-black overflow-hidden shadow-lg my-8 rounded-lg border border-white/10"
 >
-    <iframe
-        width="100%"
-        height="100%"
-        src={embedUrl}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    {
+        embedUrl ? (
+            <iframe
+                width="100%"
+                height="100%"
+                src={embedUrl}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            />
+        ) : (
+            <div class="w-full h-full flex items-center justify-center text-sm text-muted-foreground">
+                Invalid YouTube URL
+            </div>
+        )
+    }
 </div>

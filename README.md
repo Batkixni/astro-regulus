@@ -118,7 +118,7 @@ const PROFILE = {
     bio: "Your bio description",
     avatar: "/header.jpg",
     links: {
-        twitter: "x.com/yourhandle",
+        twitter: "https://x.com/yourhandle",
         email: "mailto:your@email.com",
     },
 };
@@ -369,7 +369,7 @@ const PROFILE = {
     bio: "Your bio description",
     avatar: "/header.jpg",
     links: {
-        twitter: "x.com/yourhandle",
+        twitter: "https://x.com/yourhandle",
         email: "mailto:your@email.com",
     },
 };
