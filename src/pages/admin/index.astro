@@ -1,0 +1,134 @@
+---
+export const prerender = false;
+
+import AdminShell from "@/components/admin/AdminShell";
+import { isAuthenticated } from "@/lib/auth";
+import { getAllWorks } from "@/lib/mdx";
+
+const ok = await isAuthenticated(Astro.cookies);
+if (!ok) {
+  return Astro.redirect("/admin/login");
+}
+
+const works = await getAllWorks();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      const getThemePreference = () => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      };
+      const isDark = getThemePreference() === "dark";
+      document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    </script>
+    <style is:global>
+      @import "@/styles/globals.css";
+      :root {
+        --font-sans: "Space Grotesk", sans-serif;
+      }
+      * {
+        font-family: var(--font-sans) !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <AdminShell client:only="react" title="Dashboard">
+      <div class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-medium uppercase tracking-wider text-[var(--muted-foreground)]">
+            All Works ({works.length})
+          </h3>
+          <a
+            href="/admin/works/new"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-[var(--primary)] text-[var(--primary-foreground)] text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            <span>+</span> New Work
+          </a>
+        </div>
+
+        {works.length === 0 ? (
+          <div class="text-center py-20 border border-dashed border-[var(--border)]">
+            <p class="text-[var(--muted-foreground)]">No works yet.</p>
+            <a href="/admin/works/new" class="text-[var(--primary)] text-sm hover:underline mt-2 inline-block">
+              Create your first work
+            </a>
+          </div>
+        ) : (
+          <div class="border border-[var(--border)]">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-[var(--border)] bg-[var(--muted)]/30">
+                  <th class="text-left px-4 py-3 font-medium text-[var(--muted-foreground)] text-xs uppercase tracking-wider">
+                    Work
+                  </th>
+                  <th class="text-left px-4 py-3 font-medium text-[var(--muted-foreground)] text-xs uppercase tracking-wider">
+                    Client
+                  </th>
+                  <th class="text-left px-4 py-3 font-medium text-[var(--muted-foreground)] text-xs uppercase tracking-wider">
+                    Genre
+                  </th>
+                  <th class="text-left px-4 py-3 font-medium text-[var(--muted-foreground)] text-xs uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th class="text-right px-4 py-3 font-medium text-[var(--muted-foreground)] text-xs uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {works.map((work) => (
+                  <tr class="border-b border-[var(--border)] last:border-0 hover:bg-[var(--muted)]/20 transition-colors">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-3">
+                        <img
+                          src={work.frontmatter.thumbnail}
+                          alt={work.frontmatter.title}
+                          class="w-12 h-8 object-cover border border-[var(--border)]"
+                        />
+                        <div>
+                          <p class="font-medium">{work.frontmatter.title}</p>
+                          <p class="text-xs text-[var(--muted-foreground)]">{work.slug}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-[var(--muted-foreground)]">{work.frontmatter.client}</td>
+                    <td class="px-4 py-3">
+                      <span class="px-2 py-0.5 text-[10px] uppercase tracking-wider bg-[var(--muted)] border border-[var(--border)] text-[var(--muted-foreground)]">
+                        {work.frontmatter.genre}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3 text-[var(--muted-foreground)]">
+                      {new Date(work.frontmatter.date).toLocaleDateString()}
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                      <a
+                        href={`/admin/works/edit/${work.slug}`}
+                        class="text-xs text-[var(--primary)] hover:underline"
+                      >
+                        Edit
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </AdminShell>
+  </body>
+</html>

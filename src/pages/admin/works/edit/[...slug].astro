@@ -1,0 +1,80 @@
+---
+export const prerender = false;
+
+import AdminShell from "@/components/admin/AdminShell";
+import WorkForm from "@/components/admin/WorkForm";
+import { isAuthenticated } from "@/lib/auth";
+import { getWorkBySlug } from "@/lib/mdx";
+
+const ok = await isAuthenticated(Astro.cookies);
+if (!ok) {
+  return Astro.redirect("/admin/login");
+}
+
+const slug = Astro.params.slug;
+if (!slug) {
+  return Astro.redirect("/admin");
+}
+
+const work = await getWorkBySlug(slug);
+if (!work) {
+  return Astro.redirect("/admin");
+}
+
+const initialData = {
+  title: work.frontmatter.title,
+  client: work.frontmatter.client,
+  role: work.frontmatter.role || [],
+  date: work.frontmatter.date,
+  genre: work.frontmatter.genre,
+  thumbnail: work.frontmatter.thumbnail,
+  videoUrl: work.frontmatter.videoUrl || "",
+  description: work.frontmatter.description,
+  credits: work.frontmatter.credits || [],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      const getThemePreference = () => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      };
+      const isDark = getThemePreference() === "dark";
+      document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+    </script>
+    <style is:global>
+      @import "@/styles/globals.css";
+      :root {
+        --font-sans: "Space Grotesk", sans-serif;
+      }
+      * {
+        font-family: var(--font-sans) !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-background text-foreground">
+    <AdminShell client:only="react" title="Edit Work">
+      <WorkForm
+        client:only="react"
+        mode="edit"
+        slug={slug}
+        initialData={initialData}
+        initialBody={work.body}
+      />
+    </AdminShell>
+  </body>
+</html>

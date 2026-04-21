@@ -6,12 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "start": "node dist/server/entry.mjs",
+    "start:bun": "bun dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
+    "@astrojs/node": "9.2.1",
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
+    "@aws-sdk/client-s3": "^3.1033.0",
+    "@blocknote/core": "^0.48.1",
+    "@blocknote/mantine": "^0.48.1",
+    "@blocknote/react": "^0.48.1",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@vidstack/react": "^1.12.13",
@@ -19,7 +26,10 @@
     "autoprefixer": "^10.4.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "htmx.org": "^2.0.8",
+    "jose": "^6.2.2",
+    "js-yaml": "^4.1.1",
     "lucide-react": "^0.562.0",
     "media-icons": "^1.1.5",
     "react": "^19.2.3",
@@ -30,6 +40,7 @@
     "vidstack": "^1.12.13"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/js-yaml": "^4.0.9"
   }
 }
