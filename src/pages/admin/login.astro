@@ -1,0 +1,77 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
+
+export const prerender = false;
+
+if (isAdminAuthenticated(Astro.cookies)) {
+    return Astro.redirect("/admin");
+}
+---
+
+<Layout title="Admin Login" description="Portfolio admin login">
+    <main class="flex min-h-screen items-center justify-center px-4">
+        <section
+            class="w-full max-w-md space-y-5 border border-border/70 bg-card/70 p-8 shadow-2xl"
+        >
+            <div class="space-y-1">
+                <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    Studio Backend
+                </p>
+                <h1 class="text-3xl font-bold tracking-tight">登入後台</h1>
+                <p class="text-sm text-muted-foreground">
+                    使用管理密碼登入內容管理系統
+                </p>
+            </div>
+
+            <form id="login-form" class="space-y-4">
+                <label class="space-y-2 block">
+                    <span class="text-sm font-medium">管理密碼</span>
+                    <input
+                        type="password"
+                        name="password"
+                        required
+                        class="w-full border border-border bg-background px-3 py-2 outline-none focus:border-primary"
+                    />
+                </label>
+                <button
+                    id="submit-btn"
+                    type="submit"
+                    class="w-full bg-primary px-4 py-2.5 font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-50"
+                >
+                    登入
+                </button>
+                <p id="status" class="text-sm text-muted-foreground"></p>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const form = document.getElementById("login-form");
+        const status = document.getElementById("status");
+        const button = document.getElementById("submit-btn");
+
+        form?.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            status.textContent = "";
+            button.setAttribute("disabled", "true");
+
+            const formData = new FormData(form);
+
+            const response = await fetch("/api/admin/login", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+            if (response.ok && result.ok) {
+                status.textContent = "登入成功，正在跳轉...";
+                window.location.href = "/admin";
+                return;
+            }
+
+            status.textContent = result.message || "登入失敗";
+            button.removeAttribute("disabled");
+        });
+    </script>
+</Layout>

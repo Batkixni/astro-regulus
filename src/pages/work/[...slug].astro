@@ -8,6 +8,8 @@ import Grid from "@/components/mdx/Grid.astro";
 import YouTube from "@/components/mdx/YouTube.astro";
 import Video from "@/components/mdx/Video.astro";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
     const works = await getCollection("work");
     return works.map((entry) => ({
