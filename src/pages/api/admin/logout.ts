@@ -1,8 +1,11 @@
 import type { APIRoute } from 'astro';
 
-export const POST: APIRoute = ({ cookies }) => {
-  cookies.delete('admin_token', { path: '/' });
+export const POST: APIRoute = () => {
   return new Response(JSON.stringify({ ok: true }), {
-    headers: { 'Content-Type': 'application/json' },
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Set-Cookie': 'admin_token=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax',
+    },
   });
 };

@@ -9,16 +9,11 @@ import {
   EditorBubble,
   EditorBubbleItem,
   handleCommandNavigation,
-  handleImageDrop,
-  handleImagePaste,
-  createImageUpload,
-  UploadImagesPlugin,
   StarterKit,
   Placeholder,
   TiptapImage,
   TiptapLink,
   TiptapUnderline,
-  HorizontalRule,
   createSuggestionItems,
   renderItems,
   Command,
@@ -39,21 +34,6 @@ interface Credit {
 }
 
 // ── S3 image upload ───────────────────────────────────────────────────────────
-
-const uploadFn = createImageUpload({
-  validateFn: (file) => file.type.startsWith('image/') && file.size < 20 * 1024 * 1024,
-  onUpload: async (file) => {
-    const res = await fetch('/api/admin/upload', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ filename: file.name, contentType: file.type }),
-    });
-    if (!res.ok) throw new Error('Failed to get upload URL');
-    const { uploadUrl, publicUrl } = await res.json();
-    await fetch(uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
-    return publicUrl;
-  },
-});
 
 async function uploadFile(file: File): Promise<string> {
   const res = await fetch('/api/admin/upload', {
@@ -151,14 +131,12 @@ const slashCommand = Command.configure({
 });
 
 const extensions = [
-  StarterKit.configure({ horizontalRule: false }),
-  HorizontalRule,
+  StarterKit,
   TiptapImage.configure({ allowBase64: false }),
   TiptapLink.configure({ openOnClick: false }),
   TiptapUnderline,
   Placeholder,
   Markdown.configure({ html: false, tightLists: true }),
-  UploadImagesPlugin({ imageClass: 'rounded-lg max-w-full' }),
   slashCommand,
 ];
 
@@ -264,14 +242,16 @@ export default function WorkEditor({ mode, slug }: Props) {
   useEffect(() => {
     if (mode !== 'edit' || !slug) return;
     fetch(`/api/admin/works/${slug}`)
-      .then((r) => r.json())
+      .then(async (r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((data) => {
-        if (data.error) { setLoadError(data.error); return; }
         setFm({ ...data.fm, credits: data.fm.credits ?? [] });
         setBody(data.body ?? '');
         setSha(data.sha);
       })
-      .catch(() => setLoadError('Failed to load work'))
+      .catch((e) => setLoadError(`Failed to load: ${e.message}`))
       .finally(() => setLoading(false));
   }, [mode, slug]);
 
@@ -451,8 +431,6 @@ export default function WorkEditor({ mode, slug }: Props) {
                 extensions={extensions}
                 editorProps={{
                   handleDOMEvents: { keydown: (_view, event) => handleCommandNavigation(event) },
-                  handlePaste: (view, event) => handleImagePaste(view, event, uploadFn),
-                  handleDrop: (view, event, _slice, moved) => handleImageDrop(view, event, moved, uploadFn),
                   attributes: {
                     class: 'prose prose-invert prose-zinc max-w-none focus:outline-none min-h-[60vh] text-zinc-100 text-[15px] leading-relaxed',
                   },

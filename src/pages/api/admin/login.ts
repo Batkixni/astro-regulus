@@ -1,10 +1,15 @@
 import type { APIRoute } from 'astro';
 import { signToken } from '../../../lib/auth';
 
-export const POST: APIRoute = async ({ request, cookies }) => {
-  const { password } = await request.json();
+export const POST: APIRoute = async ({ request }) => {
+  let password: string;
+  try {
+    ({ password } = await request.json());
+  } catch {
+    return new Response(JSON.stringify({ error: 'Bad request' }), { status: 400 });
+  }
 
-  if (password !== import.meta.env.ADMIN_PASSWORD) {
+  if (!password || password !== import.meta.env.ADMIN_PASSWORD) {
     return new Response(JSON.stringify({ error: 'Invalid password' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
@@ -12,15 +17,21 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   }
 
   const token = await signToken();
-  cookies.set('admin_token', token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 7,
-  });
+  const isProd = import.meta.env.PROD;
+  const cookie = [
+    `admin_token=${token}`,
+    'Path=/',
+    `Max-Age=${60 * 60 * 24 * 7}`,
+    'HttpOnly',
+    'SameSite=Lax',
+    isProd ? 'Secure' : '',
+  ].filter(Boolean).join('; ');
 
   return new Response(JSON.stringify({ ok: true }), {
-    headers: { 'Content-Type': 'application/json' },
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Set-Cookie': cookie,
+    },
   });
 };
