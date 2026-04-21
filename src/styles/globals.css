@@ -120,6 +120,43 @@
   }
 }
 
+/* Tiptap editor */
+.tiptap h1 {
+  @apply mt-6 text-3xl font-bold tracking-tight;
+}
+
+.tiptap h2 {
+  @apply mt-5 text-2xl font-semibold tracking-tight;
+}
+
+.tiptap h3 {
+  @apply mt-4 text-xl font-semibold;
+}
+
+.tiptap p {
+  @apply mt-3 leading-7;
+}
+
+.tiptap ul {
+  @apply mt-3 list-disc pl-6;
+}
+
+.tiptap ol {
+  @apply mt-3 list-decimal pl-6;
+}
+
+.tiptap blockquote {
+  @apply mt-3 border-l-2 border-primary pl-4 italic text-muted-foreground;
+}
+
+.tiptap pre {
+  @apply mt-3 overflow-x-auto rounded-md border border-border bg-muted p-3;
+}
+
+.tiptap a {
+  @apply text-primary underline underline-offset-2;
+}
+
 /* Explicit Markdown Styles Backup */
 .prose h1 {
   @apply text-4xl font-bold mt-8 mb-4 scroll-m-20 tracking-tight;
