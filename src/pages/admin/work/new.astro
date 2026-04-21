@@ -1,0 +1,8 @@
+---
+export const prerender = false;
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import WorkEditor from '../../../components/admin/WorkEditor';
+---
+<AdminLayout title="New Work" fullHeight>
+  <WorkEditor client:only="react" mode="create" />
+</AdminLayout>

@@ -1,0 +1,10 @@
+---
+export const prerender = false;
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import WorkEditor from '../../../components/admin/WorkEditor';
+
+const slug = Astro.params.slug!;
+---
+<AdminLayout title="Edit Work" fullHeight>
+  <WorkEditor client:only="react" mode="edit" slug={slug} />
+</AdminLayout>
