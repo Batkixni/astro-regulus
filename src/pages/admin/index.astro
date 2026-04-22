@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { AdminApp } from "@/components/admin/AdminApp";
+import { AdminSignOutButton } from "@/components/admin/AdminSignOutButton";
+import { getAdminSession } from "@/lib/admin/auth";
+import { listDrafts } from "@/lib/admin/db";
+import { env } from "@/lib/server/env";
+
+export const prerender = false;
+
+const session = await getAdminSession(Astro.request);
+if (!session) {
+  return Astro.redirect("/admin/login");
+}
+
+const drafts = listDrafts();
+---
+
+<Layout title="CMS Admin" description="Portfolio CMS Backend">
+  <main class="container mx-auto px-4 py-8 max-w-[1700px] space-y-6 animate-blur-in">
+    <header class="flex items-center justify-between gap-4 border-b border-border pb-4">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">Portfolio CMS</h1>
+        <p class="text-sm text-muted-foreground">
+          Logged in as {session.user.email || session.user.name}
+        </p>
+      </div>
+      <AdminSignOutButton client:load />
+    </header>
+
+    <AdminApp
+      client:load
+      initialDrafts={drafts}
+      initialDefaultBranch={env.githubDefaultBranch}
+    />
+  </main>
+</Layout>
