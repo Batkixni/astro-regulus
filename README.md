@@ -13,11 +13,11 @@ An Astro portfolio template for designer, filmmaker, or any type of creator.
 
 [![License]](LICENSE)
 
-[![Star on GitHub](https://img.shields.io/github/stars/Batkixni/astro-regulus.svg?style=social)](https://github.com/Batkixni/astro-regulus/stargazers)
-![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
-![React](https://img.shields.io/badge/Bun-CA9360?logo=bun&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-232323?logo=tailwind-css&logoColor=white)
-![shadcnui](https://img.shields.io/badge/shadcnui-232323?logo=shadcnui&logoColor=white)  
+[![Star on GitHub](https://www.shieldcn.dev/github/stars/Batkixni/astro-regulus.svg?style=social)](https://github.com/Batkixni/astro-regulus/stargazers)
+![Astro](https://www.shieldcn.dev/badge/Astro-FF5D01?logo=astro&logoColor=white)
+![React](https://www.shieldcn.dev/badge/Bun-CA9360?logo=bun&logoColor=white)
+![Tailwind CSS](https://www.shieldcn.dev/badge/Tailwind-232323?logo=tailwind-css&logoColor=white)
+![shadcnui](https://www.shieldcn.dev/badge/shadcnui-232323?logo=shadcnui&logoColor=white)  
 
 
 |**Layout 1**|
